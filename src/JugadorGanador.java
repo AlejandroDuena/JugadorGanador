@@ -1,6 +1,5 @@
-import java.io.File;
-import java.io.FileReader;
-import java.io.BufferedReader;
+import java.io.*;
+import java.lang.Math;
 
 public class JugadorGanador {
     public static void main(String[] args) {
@@ -8,32 +7,65 @@ public class JugadorGanador {
         File archivo = null;
         FileReader fr = null;
         BufferedReader br = null;
+        FileWriter fichero = null;
+        PrintWriter pw = null;
 
         try {
             archivo = new File ("ronda.txt");
             fr = new FileReader (archivo);
             br = new BufferedReader(fr);
-            while((Rondas=br.readLine())!=null);
+            int j1=0,j2=0;
+            int resfinal;
+            int ressecundario = 0;
+            int jugganador = 1;
+            
+            while((Rondas=br.readLine())!=null) {
+                String[] resultados = Rondas.split(" ");
+                if(resultados.length != 1) {
+
+
+                    j1 = j1 + Integer.parseInt(resultados[0]);
+                    j2 = j2 + Integer.parseInt(resultados[1]);
+                    //resfinal = j1 - j2;
+                    resfinal = Math.abs(j1-j2);
+
+                    //System.out.println(resfinal);
+                    //System.out.println("Resultados del jugador 1: "+ j1 +" Resultados del jugador 2: "+ j2);
+                    if (ressecundario < resfinal) {
+                        ressecundario = resfinal;
+                        //System.out.println(j1 + " " + j2);
+                        if (j1 < j2) {
+                            jugganador = 2;
+                        } else if (j2 < j1) {
+                            jugganador = 1;
+                        }
+                    }
+                }
+            }
+            //System.out.println(jugganador + " " + ressecundario);
+            try
+            {
+                fichero = new FileWriter("marcfinal.txt");
+                pw = new PrintWriter(fichero);
+                pw.println(jugganador + " " + ressecundario);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    // Nuevamente aprovechamos el finally para
+                    // asegurarnos que se cierra el fichero.
+                    if (null != fichero)
+                        fichero.close();
+                } catch (Exception e2) {
+                    e2.printStackTrace();
+                }
+            }
+
         }
         catch(Exception e){
             e.printStackTrace();
-        }finally {
-            try {
-                if (null != fr) {
-                    fr.close();
-                }
-            } catch (Exception e2) {
-                e2.printStackTrace();
-            }
-            try {
-                FileReader lector = new FileReader("Rondas");
-                BufferedReader contenido = new BufferedReader(lector);
-                while ((Rondas = contenido.readLine()) != null) {
-                    System.out.println(Rondas);
-                }
-            } catch (Exception e) {
-                System.out.println("Error al escribir.");
-            }
         }
+
     }
 }
