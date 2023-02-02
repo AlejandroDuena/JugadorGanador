@@ -23,38 +23,33 @@ public class JugadorGanador {
                 String[] resultados = Rondas.split(" ");
                 if(resultados.length != 1) {
 
-
                     j1 = j1 + Integer.parseInt(resultados[0]);
                     j2 = j2 + Integer.parseInt(resultados[1]);
-                    //resfinal = j1 - j2;
                     resfinal = Math.abs(j1-j2);
 
-                    //System.out.println(resfinal);
-                    //System.out.println("Resultados del jugador 1: "+ j1 +" Resultados del jugador 2: "+ j2);
                     if (ressecundario < resfinal) {
                         ressecundario = resfinal;
-                        //System.out.println(j1 + " " + j2);
+
                         if (j1 < j2) {
                             jugganador = 2;
-                        } else if (j2 < j1) {
+                        }
+                        else if (j2 < j1) {
                             jugganador = 1;
                         }
                     }
                 }
             }
-            //System.out.println(jugganador + " " + ressecundario);
+
             try
             {
                 fichero = new FileWriter("marcfinal.txt");
                 pw = new PrintWriter(fichero);
                 pw.println(jugganador + " " + ressecundario);
-
+                System.out.println(jugganador + " " + ressecundario);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
                 try {
-                    // Nuevamente aprovechamos el finally para
-                    // asegurarnos que se cierra el fichero.
                     if (null != fichero)
                         fichero.close();
                 } catch (Exception e2) {
