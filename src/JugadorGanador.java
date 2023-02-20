@@ -2,8 +2,9 @@ import java.io.*;
 import java.lang.Math;
 
 public class JugadorGanador {
+
     public static void main(String[] args) {
-        String Rondas = "";
+        /*String Rondas = "";
         File archivo = null;
         FileReader fr = null;
         BufferedReader br = null;
@@ -44,8 +45,7 @@ public class JugadorGanador {
             {
                 fichero = new FileWriter("marcfinal.txt");
                 pw = new PrintWriter(fichero);
-                pw.println(jugganador + " " + ressecundario);
-                System.out.println(jugganador + " " + ressecundario);
+                pw.println(jugganador +" "+ ressecundario);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -56,11 +56,9 @@ public class JugadorGanador {
                     e2.printStackTrace();
                 }
             }
-
         }
         catch(Exception e){
             e.printStackTrace();
-        }
-
+        }*/
     }
 }
