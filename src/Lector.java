@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Lector {
@@ -15,7 +14,7 @@ public class Lector {
         try{
             BufferedReader br = new BufferedReader(new FileReader(archivo));
             rondas = Integer.parseInt(br.readLine());
-            if(rondas > 10000){
+            if(rondas < 0 && rondas >= 10000){
                 enviarError("El numero de rondas sobrepasa el limite.");
             }
             while((puntaje = br.readLine()) != null){
@@ -25,8 +24,14 @@ public class Lector {
                 lista.add(jug1);
                 lista.add(jug2);
             }
-        } catch (Exception e){
-            System.out.println("No se pudo encontrar el archivo.");
+            int numrondas = lista.size()/2;
+            if(rondas != numrondas){
+                enviarError("El numero de rondas no coincide con los renglones registrados en el archivo.");
+            }
+        } catch (NumberFormatException | FileNotFoundException e){
+            System.out.println("Las rondas o los renglones registrados en el archivo contienen caracteres especiales: "+ e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
     public List<Integer> getLista(){
