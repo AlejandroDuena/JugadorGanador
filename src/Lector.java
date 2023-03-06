@@ -24,6 +24,7 @@ public class Lector {
                 lista.add(jug1);
                 lista.add(jug2);
             }
+            System.out.println(lista);
             int numrondas = lista.size()/2;
             if(rondas != numrondas){
                 enviarError("El numero de rondas no coincide con los renglones registrados en el archivo.");

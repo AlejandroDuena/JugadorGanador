@@ -6,10 +6,10 @@ public class Verificador {
     public void resfinal () {
 
         List<Integer> lista = lector.getLista();
-        int rondas = lista.size()/2;
 
-        for(int i = 0;i < rondas;i+=2) {
+        for(int i = 0;i < lista.size();i+=2) {
            int vensecundaria = Math.abs(lista.get(i) - lista.get(i+1));
+            System.out.println(vensecundaria);
            if(vensecundaria > ventaja){
                ventaja = vensecundaria;
                if(lista.get(i) > lista.get(i+1)){
